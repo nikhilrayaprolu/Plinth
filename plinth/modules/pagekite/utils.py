@@ -79,7 +79,7 @@ PREDEFINED_SERVICES = {
 
 
 def get_kite_details():
-    output = run(['get-kite'])
+    output = run(['get-kite'],False)
     kite_details = output.split()
     return {'kite_name': kite_details[0],
             'kite_secret': kite_details[1]}
@@ -95,7 +95,7 @@ def get_pagekite_config():
     # To enable PageKite two things are necessary:
     # 1) pagekite not being disabled in /etc/pagekite.d/10_account.rc
     # 2) the pagekite service running
-    is_disabled = (run(['is-disabled']).strip() == 'true')
+    is_disabled = (run(['is-disabled'],False).strip() == 'true')
     service_running = action_utils.service_is_running('pagekite')
     status['enabled'] = service_running and not is_disabled
 

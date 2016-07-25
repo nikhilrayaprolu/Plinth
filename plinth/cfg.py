@@ -51,7 +51,7 @@ DEFAULT_ROOT = '/'
 
 def get_config_file():
     """Return the configuration file to read."""
-    if os.path.isfile(DEFAULT_CONFIG_FILE):
+    if os.path.isfile(DEFAULT_CONFIG_FILE) and os.geteuid() == 0:
         root_directory = DEFAULT_ROOT
         file_path = DEFAULT_CONFIG_FILE
     else:
